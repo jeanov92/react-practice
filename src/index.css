@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  background-color: rgb(17, 24, 36);
+  color: aliceblue;
+}
+
+body {
+  margin: 0;
+}
