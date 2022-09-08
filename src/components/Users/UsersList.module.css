@@ -1,0 +1,23 @@
+.users {
+  margin: 2rem auto;
+  width: 50%;
+  max-width: 40rem;
+}
+
+.users ul {
+  list-style: none;
+  padding: 1rem;
+}
+
+.users li {
+  margin: 0.5rem 0;
+  padding: 0.5rem; 
+  box-shadow: 0 4px 8px 0 #00000033;
+  background-color: #131b2b;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.users li:hover {
+  box-shadow: 0 8px 16px 0 #cc6666;
+}
