@@ -5,12 +5,11 @@ import Card from "../UI/Card";
 
 const AddUser = () => {
   const [users, setUsers] = useState([{ name: "Jean", age: 30 }]);
-
+  
   const addUserHandler = (event) => {
     const username = event.target.username.value;
     const age = event.target.age.value;
     setUsers([...users, {name: username, age: age}]);
-    event.preventDefault();
   };
 
   return (
