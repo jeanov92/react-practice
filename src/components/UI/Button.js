@@ -2,11 +2,10 @@ import "./Button.css";
 
 const Button = (props) => {
   return (
-    <button type="submit" className={`button ${props.isValid ? '': 'invalid' }`}  disabled={!props.isValid}>
-      Add user
+    <button type="submit" className="button">
       {props.children}
     </button>
   );
 };
 
-export default Button;
+export default Button; 

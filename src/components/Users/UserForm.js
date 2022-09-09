@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Button from "../UI/Button";
+import ErrorModal from "../UI/ErrorModal";
 import styles from "./UserForm.module.css";
 
 const AddUser = (props) => {
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(true);
   const [isValidForm, setIsValidForm] = useState(true);
   const [isValidUserAge, setIsValidUserAge] = useState(true);
   const [usernameInput, setUserNameInput] = useState('');
@@ -49,6 +50,8 @@ const AddUser = (props) => {
   };
 
   return (
+    <div>
+      {!isValidForm && <ErrorModal title="Invalid form" message="Incomplete data"></ErrorModal>}
     <form className={styles.form} onSubmit={userHandler}>
       <label htmlFor="username">Username</label>
       <input id="username" type="text" value={usernameInput} onChange={validateInput}></input>
@@ -56,8 +59,9 @@ const AddUser = (props) => {
       {!isValidUserAge && <p>Age must be greater than 0</p>}
       <input id="age" type="number" value={ageInput} onChange={validateInput}></input>
       {!isValidForm && <p>Invalid form</p>}
-      <Button isValid={isValid}></Button>
+      <Button>Add user</Button>
     </form>
+    </div>
   );
 };
 
