@@ -15,10 +15,11 @@
     width: 80%;
     z-index: 100;
     overflow: hidden;
+    background-color: #192130;
   }
   
   .header {
-    background: #4f005f;
+    background: #2e1616;
     padding: 1rem;
   }
   

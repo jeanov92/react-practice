@@ -1,15 +1,12 @@
 .card {
   box-shadow: 0 4px 8px 0 #00000033;
-  background-color: #131b2b;
   transition: 0.3s;
-  width: 10%;
+  width: 25%;
   margin: 50px;
+  border-radius: 10px;
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 #cc6666;
 }
 
-.container {
-  padding: 2px 16px;
-}

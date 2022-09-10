@@ -5,33 +5,27 @@ import styles from "./UserForm.module.css";
 
 const AddUser = (props) => {
   const [isValid, setIsValid] = useState(true);
-  const [isValidForm, setIsValidForm] = useState(true);
-  const [isValidUserAge, setIsValidUserAge] = useState(true);
-  const [usernameInput, setUserNameInput] = useState('');
-  const [ageInput, setAgeInput] = useState(true);
-  
-  const userHandler = (event) => {
+  const [usernameInput, setUserNameInput] = useState("");
+  const [ageInput, setAgeInput] = useState("");
+  const [error, setError] = useState(undefined);
+
+  const onSubmitHandler = (event) => {
     event.preventDefault();
     if (validateForm(event)) {
-      setIsValidForm(true);
+      setIsValid(true);
       props.onUserAdded(event);
-      setUserNameInput('');
-      setAgeInput('');
-      setIsValid(false);
+      setUserNameInput("");
+      setAgeInput("");
     } else {
-      setIsValidForm(false);
+      setIsValid(false);
     }
   };
 
-  const validateInput = (event) => {
+  const setValue = (event) => {
     const value = event.target.value;
-    if (event.target.id === "username" && validateName(value)) {
-      setIsValid(true);
-      setUserNameInput(value)
+    if (event.target.id === "username") {
+      setUserNameInput(value);
     } else if (event.target.id === "age") {
-      const isValidAge = validateAge(value);
-      setIsValidUserAge(isValidAge);
-      setIsValid(isValidAge);
       setAgeInput(value);
     }
   };
@@ -45,22 +39,51 @@ const AddUser = (props) => {
   };
 
   const validateForm = (event) => {
-    return validateName(event.target.username.value) &&
-      validateAge(event.target.age.value);
+    const isValidName = validateName(event.target.username.value);
+    const isValidAge = validateAge(event.target.age.value);
+
+    !isValidAge && setFormError("Invalid age", "Age must be greater than 0");
+    !isValidName && setFormError("Invalid User name", "Please insert name.");
+
+    return isValidName && isValidAge;
   };
 
+  const errorModalHandler = () => {
+    setError(null);
+  };
+
+  const setFormError = (title, message) => {
+    setError({
+      title: title,
+      message: message,
+    });
+  };
   return (
     <div>
-      {!isValidForm && <ErrorModal title="Invalid form" message="Incomplete data"></ErrorModal>}
-    <form className={styles.form} onSubmit={userHandler}>
-      <label htmlFor="username">Username</label>
-      <input id="username" type="text" value={usernameInput} onChange={validateInput}></input>
-      <label htmlFor="age">Age</label>
-      {!isValidUserAge && <p>Age must be greater than 0</p>}
-      <input id="age" type="number" value={ageInput} onChange={validateInput}></input>
-      {!isValidForm && <p>Invalid form</p>}
-      <Button>Add user</Button>
-    </form>
+      {error && !isValid && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorModalHandler}
+        ></ErrorModal>
+      )}
+      <form className={styles.form} onSubmit={onSubmitHandler}>
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          value={usernameInput}
+          onChange={setValue}
+        ></input>
+        <label htmlFor="age">Age</label>
+        <input
+          id="age"
+          type="number"
+          value={ageInput}
+          onChange={setValue}
+        ></input>
+        <Button>Add user</Button>
+      </form>
     </div>
   );
 };
