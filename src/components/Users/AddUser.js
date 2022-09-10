@@ -7,9 +7,9 @@ const AddUser = (props) => {
   };
 
   return (
-    <div>
+    <>
       <UserForm onUserAdded={addUserHandler}></UserForm>
-    </div>
+    </>
   );
 };
 

@@ -59,7 +59,7 @@ const AddUser = (props) => {
     });
   };
   return (
-    <div>
+    <>
       {error && !isValid && (
         <ErrorModal
           title={error.title}
@@ -84,7 +84,7 @@ const AddUser = (props) => {
         ></input>
         <Button>Add user</Button>
       </form>
-    </div>
+    </>
   );
 };
 

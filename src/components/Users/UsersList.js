@@ -4,7 +4,7 @@ import Card from "../UI/Card";
 
 const UsersList = (props) => {
   return (
-    <div>
+    <>
       <Card className={styles.users}>
         <ul>
           {props.users.map((user) => {
@@ -24,7 +24,7 @@ const UsersList = (props) => {
           })}
         </ul>
       </Card>
-    </div>
+    </>
   );
 };
 
