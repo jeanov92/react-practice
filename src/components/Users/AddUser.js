@@ -2,8 +2,8 @@ import React from "react";
 import UserForm from "./UserForm";
 
 const AddUser = (props) => {
-  const addUserHandler = (event) => {
-    props.addNewUser(event);
+  const addUserHandler = (user) => {
+    props.addNewUser(user);
   };
 
   return (
